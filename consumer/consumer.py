@@ -30,10 +30,7 @@ def on_message(channel, method_frame, header_frame, body):
     json_data = json.loads(body_str)
     print(type(json_data))
     print(json_data)
-
-    posts = db["posts"]
-    posts.insert_one(json_data)
-
+    db.posts.insert_one(json_data).inserted_id
 
 
 channel.basic_consume(on_message, queue='ted')
