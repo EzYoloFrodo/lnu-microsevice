@@ -21,13 +21,13 @@ channel = connection.channel()
 
 channel.queue_declare(queue='ted')
 
-while True:
 
+def send_message(message):
     channel.basic_publish(exchange='',
                           routing_key='ted',
-                          body='Hello World!')
-    time.sleep(10)
+                          body=message)
+    print("message send! ")
 
-print(" [x] Sent 'Hello World!'")
 
-connection.close()
+def close_connection():
+    connection.close()
