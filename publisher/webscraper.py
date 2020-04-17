@@ -44,8 +44,11 @@ async def main():
             print(text)
 
             element = await link_page.querySelector('#author_name')
-            author_name = await link_page.evaluate('(element) => element.innerText', element)
-            print(author_name)
+            try:
+                author_name = await link_page.evaluate('(element) => element.innerText', element)
+                print(author_name)
+            except Exception:
+                author_name = "None"
 
             data_to_send = {"link": link,
                             "title": title,
