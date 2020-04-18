@@ -14,14 +14,7 @@ rmq_url_connection_str = os.environ.get("AMQP_URL")
 
 def save_in_db(json_data):
     print('start inserting')
-    new_data = {
-        "link": json_data.get("link"),
-        "title": json_data.get("title"),
-        "text": str(json_data.get("text")),
-        "author_name": json_data.get("author_name")
-    }
-
-    db.posts.insert_one(new_data)
+    db.posts.insert_one(json_data)
     print("insert one done")
 
 
