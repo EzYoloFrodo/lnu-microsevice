@@ -23,7 +23,7 @@ async def main():
         link = await page.evaluate('(element) => element.href', element)
         try:
             if len(link.split('/')) == 4 and link[-1].isdigit():
-                print(link)
+                # print(link)
                 links.append(link)
         except IndexError:
             pass
@@ -41,12 +41,12 @@ async def main():
 
             element = await link_page.querySelector('#newsSummary')
             text = await link_page.evaluate('(element) => element.innerText', element)
-            print(text)
+            # print(text)
 
             element = await link_page.querySelector('#author_name')
             try:
                 author_name = await link_page.evaluate('(element) => element.innerText', element)
-                print(author_name)
+                # print(author_name)
             except Exception:
                 author_name = "None"
 
