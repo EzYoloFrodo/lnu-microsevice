@@ -48,6 +48,13 @@ services:
     networks:
       - network
 
+  graphql_server:
+    build: graphql_service
+    ports:
+      - '5123:5123'
+    networks:
+      - network
+
 
 networks:
   network: {}
