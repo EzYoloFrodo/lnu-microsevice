@@ -58,5 +58,25 @@ services:
       - network
 
 
+  ml_predictor:
+    build: predictor
+    depends_on:
+      - mongo
+    ports:
+      - '5544:5544'
+    networks:
+      - network
+
+  view_client:
+    build: view_client
+    depends_on:
+      - mongo
+      - graphql_server
+    ports:
+      - '8080:8080'
+    networks:
+      - network
+
+
 networks:
   network: {}
