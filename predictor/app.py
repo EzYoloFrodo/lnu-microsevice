@@ -80,9 +80,9 @@ def prediction_get_data():
 def prediction_save(ids, predictions):
     for number, id in enumerate(ids):
         if predictions[number] == 0:
-            db['posts'].update_one({"_id": id}, {"plike": False})
+            db['posts'].find_one_and_update({"_id": id}, {'$set': {"plike": False}})
         else:
-            db['posts'].update_one({"_id": id}, {"plike": True})
+            db['posts'].find_one_and_update({"_id": id}, {'$set': {"plike": True}})
 
 
 def full_pipeline():
@@ -101,7 +101,7 @@ def index():
 @app.route('/train')
 def train():
     score = full_pipeline()
-    return f'<p>Training is done, best score is {score}</p>'
+    return '<p>Training is done, best score is {}</p>'.format(score)
 
 
 if __name__ == '__main__':
